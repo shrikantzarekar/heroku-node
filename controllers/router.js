@@ -43,4 +43,27 @@ module.exports = function(app) {
             response.status(200).send('');
         });
     });
+
+        // Send lead notification
+    app.post('/alerts', function(request, response) {
+        // Assemble a text message body 
+        var message = 'New alert for ' + request.body.machine + '. Status Message: "'
+            + request.body.message + '"';
+
+        // Send lead notification to agent
+        client.sendMessage({
+            to: config.agentNumber,
+            from: config.twilioNumber,
+            body: message
+        }, function(err, data) {
+            // Return a 500 if there was an error on Twilio's end
+            if (err) {
+                console.error(err);
+                return response.status(500).send();
+            }
+
+            // Otherwise, respond with 200 OK
+            response.status(200).send('');
+        });
+    });
 };
