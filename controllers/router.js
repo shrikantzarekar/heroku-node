@@ -24,8 +24,7 @@ module.exports = function(app) {
     // Send lead notification
     app.post('/leads', function(request, response) {
         // Assemble a text message body 
-        var message = 'New lead received for ' + house.title + '. Call ' 
-            + request.body.name + ' at ' + request.body.phone + '. Message: "'
+        var message = 'New alert for ' + request.body.machine + '. Status Message: "'
             + request.body.message + '"';
 
         // Send lead notification to agent
