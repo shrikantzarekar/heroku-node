@@ -16,6 +16,12 @@ var house = {
 
 // Map routes to controller functions
 module.exports = function(app) {
+
+    app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+    });
     
     // Render landing page
     app.get('/', function(request, response) {
@@ -30,7 +36,7 @@ module.exports = function(app) {
 
         // Send lead notification to agent
         client.sendMessage({
-            to: request.body.toPoneNumber,
+            to: "+"+request.body.toPoneNumber,
             from: config.twilioNumber,
             body: message
         }, function(err, data) {
@@ -41,7 +47,7 @@ module.exports = function(app) {
             }
 
             // Otherwise, respond with 200 OK
-            response.status(200).send('');
+            response.status(200).send("+"+request.body.toPoneNumber);
         });
     });
 
@@ -53,7 +59,7 @@ module.exports = function(app) {
 
         // Send lead notification to agent
         client.sendMessage({
-            to: request.body.toPoneNumber,
+            to: "+"+request.body.toPoneNumber,
             from: config.twilioNumber,
             body: message
         }, function(err, data) {
@@ -64,7 +70,7 @@ module.exports = function(app) {
             }
 
             // Otherwise, respond with 200 OK
-            response.status(200).send('');
+            response.status(200).send("+"+request.body.toPoneNumber);
         });
     });
 
