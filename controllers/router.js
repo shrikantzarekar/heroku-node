@@ -10,7 +10,7 @@ var house = {
     price: '$349,999',
     description: 'You and your family will love this charming home. '
         + 'Featuring granite appliances, stainless steel windows, and '
-        + 'high efficiency dual mud rooms, this joint is loaded to the max. '
+        + 'high efficiency dual mud rooms, this joint is loaded to the max '
         + 'Motivated sellers have priced for a quick sale, act now!'
 };
 
@@ -46,6 +46,29 @@ module.exports = function(app) {
 
         // Send lead notification
     app.post('/alerts', function(request, response) {
+        // Assemble a text message body 
+        var message = 'New alert for ' + request.body.machine + '. Status Message: "'
+            + request.body.message + '"';
+
+        // Send lead notification to agent
+        client.sendMessage({
+            to: request.body.toPoneNumber,
+            from: config.twilioNumber,
+            body: message
+        }, function(err, data) {
+            // Return a 500 if there was an error on Twilio's end
+            if (err) {
+                console.error(err);
+                return response.status(500).send();
+            }
+
+            // Otherwise, respond with 200 OK
+            response.status(200).send('');
+        });
+    });
+
+
+    app.get('/alerts', function(request, response) {
         // Assemble a text message body 
         var message = 'New alert for ' + request.body.machine + '. Status Message: "'
             + request.body.message + '"';
