@@ -29,7 +29,7 @@ module.exports = function(app) {
 
         // Send lead notification to agent
         client.sendMessage({
-            to: config.agentNumber,
+            to: request.body.toPoneNumber,
             from: config.twilioNumber,
             body: message
         }, function(err, data) {
