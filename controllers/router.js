@@ -31,12 +31,12 @@ module.exports = function(app) {
     // Send lead notification
         app.post('/leads', function(request, response) {
         // Assemble a text message body 
-        var message = 'New alert for ' + request.body.machine + '. Status Message: "'
+        var message = 'New alert for ' + request.body.name + '. Status Message: "'
             + request.body.message + '"';
 
         // Send lead notification to agent
         client.sendMessage({
-            to: "+"+request.body.toPoneNumber,
+            to: config.agentNumber,
             from: config.twilioNumber,
             body: message
         }, function(err, data) {
