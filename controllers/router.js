@@ -16,6 +16,11 @@ var house = {
 
 // Map routes to controller functions
 module.exports = function(app) {
+    app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+    });
     // Render landing page
     app.get('/', function(request, response) {
         response.render('index', house);
