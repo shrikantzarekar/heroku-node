@@ -14,7 +14,7 @@ cfg.secret = process.env.APP_SECRET || 'keyboard cat';
 // variables, and load them from there as we are doing below. Alternately,
 // you could hard code these values here as strings.
 cfg.accountSid = "AC2a41bb1019428857b769a44f3588e469";
-cfg.authToken = "8db3c7e7e1ce1fde9a89e2111613add0";
+cfg.authToken = "";
 
 // A Twilio number you control - choose one from:
 // https://www.twilio.com/user/account/phone-numbers/incoming
