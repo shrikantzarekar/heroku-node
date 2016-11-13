@@ -16,16 +16,16 @@ block content
         questions you might have about this property. Fill out the form below
         with your contact information, and an agent will reach out soon.
 
-      form(action='/leads', method='POST')
+      form(action='/alerts', method='POST')
 
         .form-group
-          label(for='name') Your Name
-          input.form-control(type='text', name='name',
+          label(for='machine') Your Machine
+          input.form-control(type='text', name='machine',
             placeholder='John Appleseed')
 
         .form-group
-          label(for='phone') Your Phone Number
-          input.form-control(type='text', name='phone',
+          label(for='toPoneNumber') To Phone Number
+          input.form-control(type='text', name='toPoneNumber',
             placeholder='+16512229988')
 
         .form-group
